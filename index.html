@@ -13,6 +13,13 @@
             -webkit-text-fill-color: transparent;
         }
         .card:hover { transform: translateY(-5px); transition: 0.3s; }
+        .carousel-item { display: none; transition: opacity 0.5s ease-in-out; }
+        .carousel-item.active { display: block; }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -23,6 +30,7 @@
             <div class="space-x-6 text-sm font-medium">
                 <a href="#about" class="hover:text-blue-600 transition">About</a>
                 <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
+                <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
                 <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
                 <a href="https://www.linkedin.com/in/rue-k-880b40139/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">LinkedIn</a>
             </div>
@@ -30,15 +38,15 @@
     </nav>
 
     <header class="max-w-5xl mx-auto px-6 py-24 text-center">
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Rue Kandathil</h1>
-        <p class="text-2xl md:text-3xl font-semibold gradient-text mb-8">Managing Principal, Data & Analytics</p>
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Rue Kandathil [cite: 1]</h1>
+        <p class="text-2xl md:text-3xl font-semibold gradient-text mb-8">Managing Principal, Data & Analytics [cite: 1]</p>
         <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
-            Seasoned IT leader focusing on people, strategy, and outcomes—backed by deep technical expertise in the analytics technologies that enable them[cite: 5].
+            Seasoned IT leader focusing on people, strategy, and outcomes—backed by deep technical expertise in analytics[cite: 5, 13].
         </p>
         <div class="flex justify-center gap-4">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 w-40">
                 <p class="text-3xl font-bold text-blue-600">$3.5M+</p>
-                <p class="text-xs text-slate-500 uppercase tracking-widest mt-2">Signed Contracts [cite: 34]</p>
+                <p class="text-xs text-slate-500 uppercase tracking-widest mt-2">Signed Contracts [cite: 9, 34]</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 w-40">
                 <p class="text-3xl font-bold text-purple-600">15%</p>
@@ -55,10 +63,10 @@
             <div class="grid md:grid-cols-2 gap-12">
                 <div>
                     <p class="text-slate-700 leading-relaxed mb-6">
-                        I lead teams to deliver complex analytics projects while helping organizations create robust data systems that generate measurable business value[cite: 6]. My work centers on building practical roadmaps for integrations and modernizing how organizations use data to improve governance and trust[cite: 7, 8].
+                        I lead teams to deliver complex analytics projects while helping organizations create robust data systems[cite: 6]. My work centers on building practical roadmaps for integrations and modernizing how organizations use data[cite: 7, 8].
                     </p>
                     <p class="text-slate-700 leading-relaxed">
-                        I balance delivery pressure with a sustainable pace, translating executive goals into plans teams can actually execute[cite: 11].
+                        I balance delivery pressure with a sustainable pace, translating executive goals into plans teams can actually execute.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 gap-4">
@@ -82,41 +90,86 @@
     <section id="experience" class="py-20">
         <div class="max-w-5xl mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12">Professional Experience</h2>
-            
             <div class="space-y-12">
                 <div class="relative pl-8 border-l-2 border-blue-200">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
                     <p class="text-sm font-bold text-blue-600 uppercase mb-1">Apr 2025 – Present [cite: 30]</p>
-                    <h3 class="text-xl font-bold">Managing Principal, Data & Analytics</h3>
-                    <p class="text-slate-600 mb-4">Pellera Technologies (Formerly Converge Technology Solutions) [cite: 29]</p>
+                    <h3 class="text-xl font-bold">Managing Principal, Data & Analytics </h3>
+                    <p class="text-slate-600 mb-4">Pellera Technologies </p>
                     <ul class="text-slate-700 space-y-2 list-disc pl-5">
-                        <li>Lead design and implementation of architectures powering Engineering, BI, Data Science, and AI[cite: 31].</li>
-                        <li>Implement secure hybrid architectures in Fabric, Snowflake, and Databricks.</li>
+                        <li>Lead design and implementation of architectures for BI and AI initiatives[cite: 31].</li>
+                        <li>Implement hybrid architectures in Fabric, Snowflake, and Databricks[cite: 32].</li>
                         <li>Direct pre-sales support, helping win $3.5M+ in signed contracts[cite: 34].</li>
                     </ul>
                 </div>
-
                 <div class="relative pl-8 border-l-2 border-slate-200">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 bg-slate-300 rounded-full"></div>
                     <p class="text-sm font-bold text-slate-500 uppercase mb-1">Oct 2021 – Present [cite: 37, 48]</p>
-                    <h3 class="text-xl font-bold">Manager, Business Analytics & Analytics Lead</h3>
+                    <h3 class="text-xl font-bold">Manager, Business Analytics & Analytics Lead [cite: 36, 47]</h3>
                     <p class="text-slate-600 mb-4">Converge Technology Solutions [cite: 36]</p>
                     <ul class="text-slate-700 space-y-2 list-disc pl-5">
-                        <li>Led projects exceeding $700k+ in signed value to successful completion[cite: 38].</li>
-                        <li>Increased project turnover rate by 10-15% via standard operating procedures[cite: 42].</li>
-                        <li>Managed team opex and vendor relations with Microsoft, Salesforce, and Alteryx[cite: 44, 46].</li>
+                        <li>Led projects exceeding $700k in signed value[cite: 38].</li>
+                        <li>Increased project turnover rate by 10-15% via standard SOPs[cite: 42].</li>
+                        <li>Managed vendor relations with Microsoft, Salesforce, and Alteryx[cite: 46].</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="relative pl-8 border-l-2 border-slate-200">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-slate-300 rounded-full"></div>
-                    <p class="text-sm font-bold text-slate-500 uppercase mb-1">June 2018 – Sep 2021 [cite: 53]</p>
-                    <h3 class="text-xl font-bold">Business Intelligence Analyst</h3>
-                    <p class="text-slate-600 mb-4">Finning International [cite: 51]</p>
-                    <ul class="text-slate-700 space-y-2 list-disc pl-5">
-                        <li>Crafted analytics for senior leadership to enable data-driven decision making[cite: 54].</li>
-                        <li>Developed a new reporting ecosystem for the Canadian Sales & Ops division[cite: 60].</li>
-                    </ul>
+    <section id="projects" class="bg-slate-100 py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Project Spotlight</h2>
+            <div class="relative">
+                <div class="carousel-item active glass-morphism rounded-3xl shadow-xl overflow-hidden bg-white">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 md:p-12 bg-blue-600 text-white flex flex-col justify-center">
+                            <span class="text-blue-200 font-bold uppercase tracking-widest text-xs mb-2">Modernization</span>
+                            <h2 class="text-2xl font-bold mb-2">Region of York </h2>
+                            <p class="text-blue-100 italic">Sep 2023 – Current </p>
+                            <p class="mt-6 text-2xl font-bold">~$2M Project </p>
+                        </div>
+                        <div class="p-8 md:p-12">
+                            <h3 class="font-bold text-blue-600 mb-4">Overview</h3>
+                            <p class="text-sm text-slate-700 mb-4">Implementing Azure and Power BI for data management and machine learning[cite: 70].</p>
+                            <h3 class="font-bold text-blue-600 mb-2">My Role</h3>
+                            <p class="text-sm text-slate-700">Leading modernization efforts, building future-state roadmaps, and creating governance processes[cite: 71, 72].</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item glass-morphism rounded-3xl shadow-xl overflow-hidden bg-white">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 md:p-12 bg-indigo-700 text-white flex flex-col justify-center">
+                            <span class="text-indigo-200 font-bold uppercase tracking-widest text-xs mb-2">Architecture</span>
+                            <h2 class="text-2xl font-bold mb-2">HIROC </h2>
+                            <p class="text-indigo-100 italic">Mar 2022 – Oct 2022 </p>
+                        </div>
+                        <div class="p-8 md:p-12">
+                            <h3 class="font-bold text-indigo-700 mb-4">Challenge</h3>
+                            <p class="text-sm text-slate-700 mb-4">Designed complex embedded analytics with multi-fact aggregated datasets and dynamic security.</p>
+                            <h3 class="font-bold text-indigo-700 mb-2">Stack</h3>
+                            <p class="text-sm text-slate-700">Snowflake, Power BI, Power Automate, Git, and web development[cite: 74].</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item glass-morphism rounded-3xl shadow-xl overflow-hidden bg-white">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 md:p-12 bg-slate-800 text-white flex flex-col justify-center">
+                            <span class="text-slate-400 font-bold uppercase tracking-widest text-xs mb-2">Training</span>
+                            <h2 class="text-2xl font-bold mb-2">Converge AA Practice [cite: 77]</h2>
+                            <p class="text-slate-300 italic">Dec 2021 – Apr 2022 [cite: 77]</p>
+                        </div>
+                        <div class="p-8 md:p-12">
+                            <h3 class="font-bold text-slate-800 mb-4">Enablement</h3>
+                            <p class="text-sm text-slate-700 mb-4">Developed internal training for Power BI and Microsoft Fabric to grow team competency[cite: 77].</p>
+                            <h3 class="font-bold text-slate-800 mb-2">Result</h3>
+                            <p class="text-sm text-slate-700">Significantly improved team delivery on related projects, driving correlated revenue[cite: 79].</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-8 gap-4">
+                    <button onclick="moveSlide(-1)" class="p-3 rounded-full bg-white border hover:bg-slate-50 shadow-sm"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button onclick="moveSlide(1)" class="p-3 rounded-full bg-white border hover:bg-slate-50 shadow-sm"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -124,21 +177,21 @@
 
     <section id="skills" class="bg-slate-900 text-white py-20">
         <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12">Technical Arsenal</h2>
+            <h2 class="text-3xl font-bold mb-12">Technical Arsenal [cite: 21, 35]</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
                     <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Platforms</h4>
                     <ul class="space-y-2 text-slate-300">
                         <li>Microsoft Fabric </li>
-                        <li>Snowflake </li>
-                        <li>Databricks </li>
-                        <li>Azure (In Progress) [cite: 27]</li>
+                        <li>Snowflake [cite: 32]</li>
+                        <li>Databricks [cite: 32]</li>
+                        <li>Azure </li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Analytics</h4>
                     <ul class="space-y-2 text-slate-300">
-                        <li>Power BI [cite: 35]</li>
+                        <li>Power BI [cite: 26]</li>
                         <li>Tableau [cite: 35]</li>
                         <li>Alteryx [cite: 46]</li>
                         <li>Salesforce [cite: 46]</li>
@@ -153,11 +206,11 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Certifications</h4>
+                    <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Education</h4>
                     <ul class="space-y-2 text-slate-300 text-sm">
-                        <li>Power BI Data Analyst [cite: 26]</li>
-                        <li>Fabric Analytics Associate [cite: 27]</li>
-                        <li>Agile Leadership (PMI) [cite: 23]</li>
+                        <li>B.A. Economics [cite: 23]</li>
+                        <li>Agile Leadership [cite: 23]</li>
+                        <li>Certified BI Analyst [cite: 26]</li>
                     </ul>
                 </div>
             </div>
@@ -167,16 +220,25 @@
     <footer class="py-12 border-t">
         <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
-                <h3 class="font-bold">Rue Kandathil</h3>
-                <p class="text-slate-500 text-sm">Calgary, AB | (780) 901-2501 [cite: 3]</p>
+                <h3 class="font-bold">Rue Kandathil [cite: 19]</h3>
+                <p class="text-slate-500 text-sm">Calgary, AB | (780) 901-2501 [cite: 25]</p>
+                <p class="text-slate-500 text-xs mt-1">rkandathil@gmail.com [cite: 24]</p>
             </div>
             <div class="flex gap-6">
-                <a href="mailto:rkandathil@gmail.com" class="text-slate-600 hover:text-blue-600"><i class="fa-solid fa-envelope fa-xl"></i></a>
-                <a href="https://www.linkedin.com/in/rue-k-880b40139/" target="_blank" class="text-slate-600 hover:text-blue-600"><i class="fa-brands fa-linkedin fa-xl"></i></a>
+                <a href="https://www.linkedin.com/in/rue-k-880b40139/" target="_blank" class="text-slate-600 hover:text-blue-600"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
             </div>
         </div>
-        <p class="text-center text-slate-400 text-xs mt-8">References available upon request [cite: 68]</p>
+        <p class="text-center text-slate-400 text-xs mt-8">References and Portfolio available upon request [cite: 67, 68]</p>
     </footer>
 
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        function moveSlide(step) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + step + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
 </body>
 </html>
