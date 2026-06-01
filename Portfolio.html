@@ -1,244 +1,987 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rue Kandathil | Data & Analytics Leader</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .card:hover { transform: translateY(-5px); transition: 0.3s; }
-        .carousel-item { display: none; transition: opacity 0.5s ease-in-out; }
-        .carousel-item.active { display: block; }
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1000, initial-scale=1.0" />
+  <title>Rue Kandathil</title>
+
+  <style>
+    :root {
+      --bg: #0b1726;
+      --text: #ffffff;
+      --accent: #5eead4;
+      --line: rgba(255, 255, 255, 0.18);
+      --icon-bg: #b8c7dc;
+      --icon-color: #0b1726;
+      --page-width: 1000px;
+      --left-width: 360px;
+      --right-width: 640px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site {
+      width: var(--page-width);
+      min-width: var(--page-width);
+      height: 100vh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: var(--left-width) var(--right-width);
+      column-gap: 32px;
+      padding: 58px 0 48px;
+    }
+
+    .left-panel {
+      height: calc(100vh - 106px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: sticky;
+      top: 58px;
+    }
+
+    .name {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 50px;
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 42px;
+      white-space: nowrap;
+    }
+
+    .tagline {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 400;
+      color: #ffffff;
+      max-width: 350px;
+      margin-bottom: 30px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 18px;
+      width: 220px;
+      margin-bottom: 42px;
+    }
+
+    .nav button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: left;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav button::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: rgba(255,255,255,0.55);
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+
+    .nav button.active::before,
+    .nav button:hover::before {
+      width: 64px;
+      background: #ffffff;
+    }
+
+    .nav button:not(.active) {
+      opacity: 0.62;
+    }
+
+    .nav button:hover {
+      opacity: 1;
+    }
+
+    .contact {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      width: 320px;
+      margin-top: 0;
+      margin-bottom: 42px;
+    }
+
+    .contact-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 2px;
+      background: var(--icon-bg);
+      color: var(--icon-color);
+      display: grid;
+      place-items: center;
+      border: 0;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .contact-btn svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .phone-tooltip {
+      position: absolute;
+      left: 50%;
+      top: 43px;
+      transform: translateX(-50%);
+      background: #ffffff;
+      color: var(--bg);
+      padding: 6px 9px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-btn:hover .phone-tooltip {
+      opacity: 1;
+    }
+
+    .right-panel {
+      height: calc(100vh - 106px);
+      overflow-y: auto;
+      padding-right: 14px;
+    }
+
+    .right-panel::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .right-panel::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .right-panel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.28);
+      border-radius: 999px;
+    }
+
+    .content-section {
+      display: none;
+      min-height: calc(100vh - 106px);
+      padding-top: 2px;
+      padding-bottom: 80px;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+
+    .section-header .num {
+      color: var(--accent);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .section-header::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
+
+    .body-copy {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #ffffff;
+      max-width: 590px;
+    }
+
+    .body-copy p {
+      margin-bottom: 20px;
+    }
+
+    .body-copy strong {
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .item-list {
+      display: grid;
+      gap: 24px;
+      max-width: 590px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .item-label {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+
+    .item-content h3,
+    .project-item h3 {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .item-content p,
+    .project-item p {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 1.8;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(94, 234, 212, 0.12);
+      border: 1px solid rgba(94, 234, 212, 0.18);
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    .project-item {
+      display: block;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+  
+    .timeline-list {
+      display: grid;
+      gap: 42px;
+      max-width: 610px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 34px;
+      align-items: start;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-date {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      padding-top: 3px;
+    }
+
+    .timeline-content h3 {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .timeline-content p {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 16px;
+    }
+
+  
+    .timeline-item.pellera-clean {
+      border-bottom: 0;
+      padding-bottom: 4px;
+      margin-bottom: -18px;
+    }
+
+    .timeline-item.managing-principal .timeline-date {
+      visibility: visible;
+    }
+
+    .timeline-item.pellera-clean:not(.managing-principal) .timeline-date {
+      visibility: hidden;
+    }
+
+    .timeline-item.pellera-final {
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 30px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-list {
+      gap: 24px;
+    }
+
+    .timeline-item.no-border {
+      border-bottom: 0;
+    }
+
+    .timeline-item.no-top-date .timeline-date {
+      visibility: hidden;
+    }
+
+  
+    .timeline-item.no-border {
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 18px;
+      margin-bottom: 0;
+    }
+
+    .timeline-item.business-analyst-role {
+      padding-top: 0;
+      margin-top: -18px;
+    }
+
+    /* Reduce spacing between BI Analyst and Business Analyst */
+    .timeline-item:has(.finning-bi) {
+      padding-bottom: 6px;
+      margin-bottom: -10px;
+      border-bottom: 0;
+    }
+
+    /* Remove bottom line from final Sales Analyst role */
+    .timeline-item:has(.sales-analyst) {
+      border-top: 1px solid rgba(255,255,255,0.18);
+      border-bottom: 0;
+      padding-top: 26px;
+      padding-bottom: 0;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+  
+    
+    .timeline-list {
+      display: grid;
+      gap: 30px;
+      max-width: 760px;
+    }
+
+    .timeline-item {
+      display: block;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .timeline-item.no-border {
+      border-bottom: 0;
+    }
+
+    .timeline-item.pellera-clean {
+      border-bottom: 0;
+      padding-bottom: 10px;
+      margin-bottom: -8px;
+    }
+
+    .timeline-item.pellera-final {
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 26px;
+      margin-bottom: 0;
+    }
+
+    .timeline-item.business-analyst-role {
+      padding-top: 0;
+      margin-top: -12px;
+      padding-bottom: 26px;
+    }
+
+    .timeline-date {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.52);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item.pellera-clean:not(.managing-principal) .timeline-date,
+    .timeline-item.no-top-date .timeline-date {
+      display: none;
+    }
+
+    .timeline-content {
+      padding-left: 0;
+    }
+
+    .timeline-content h3 {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .timeline-content p {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 22px;
+      max-width: 760px;
+    }
+
+    .timeline-item:has(.finning-bi) {
+      padding-bottom: 8px;
+      margin-bottom: -10px;
+      border-bottom: 0;
+    }
+
+    .timeline-item:has(.sales-analyst) {
+      border-top: 1px solid rgba(255,255,255,0.18);
+      border-bottom: 0;
+      padding-top: 26px;
+      padding-bottom: 0;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+
+    /* Scroll indicators */
+    .scroll-indicator {
+      position: fixed;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scroll-indicator.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scroll-indicator:hover {
+      transform: scale(1.06);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .scroll-indicator svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .scroll-up {
+      top: 20px;
+    }
+
+    .scroll-down {
+      bottom: 20px;
+    }
+
+  
+    .left-panel {
+      justify-content: flex-start;
+    }
+
+    .contact {
+      margin-top: auto;
+      margin-bottom: 0;
+      align-self: center;
+      justify-content: center;
+      width: 320px;
+    }
+
+  
+    .skills-list {
+      display: grid;
+      gap: 34px;
+      max-width: 760px;
+    }
+
+    .skills-item {
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .skills-item:last-child {
+      border-bottom: 0;
+    }
+
+    .skills-item h3 {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .skills-item p {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
 
-    <nav class="sticky top-0 bg-white/80 backdrop-blur-md border-b z-50">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="text-xl font-bold tracking-tight">RK.</span>
-            <div class="space-x-6 text-sm font-medium">
-                <a href="#about" class="hover:text-blue-600 transition">About</a>
-                <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
-                <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
-                <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
-                <a href="https://www.linkedin.com/in/rue-k-880b40139/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">LinkedIn</a>
-            </div>
+<body>
+
+  <!-- Scroll indicators -->
+  <button class="scroll-indicator scroll-up" id="scrollUpBtn" aria-label="Scroll up">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 7l-7 7 1.4 1.4L12 9.8l5.6 5.6L19 14z"/>
+    </svg>
+  </button>
+
+  <button class="scroll-indicator scroll-down" id="scrollDownBtn" aria-label="Scroll down">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 17l7-7-1.4-1.4L12 14.2 6.4 8.6 5 10z"/>
+    </svg>
+  </button>
+
+  <div class="site">
+    <aside class="left-panel">
+      <h1 class="name">Rue Kandathil</h1>
+
+      <div class="subtitle">
+        BI, Data, and Analytics Leader &amp; Architect
+      </div>
+
+
+      <nav class="nav" aria-label="Portfolio navigation">
+        <button class="active" data-section="about">About</button>
+        <button data-section="experience">Experience</button>
+        <button data-section="skills">Skills</button>
+        <button data-section="projects">Projects</button>
+      </nav>
+<div class="contact">
+        <a class="contact-btn" href="https://github.com/RahulKandathil" target="_blank" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.7-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.8-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1.1.8-.2 1.6-.3 2.5-.3s1.7.1 2.5.3c1.9-1.4 2.8-1.1 2.8-1.1.5 1.4.2 2.4.1 2.7.6.8 1 1.7 1 2.8 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5 4-1.3 6.8-5.1 6.8-9.6C22 6.6 17.5 2 12 2Z"/>
+          </svg>
+        </a>
+
+        <a class="contact-btn" href="https://www.linkedin.com/in/rue-k-880b40139/" target="_blank" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.35 8h4.3v15H.35V8Zm7.15 0h4.12v2.05h.06c.57-1.08 1.98-2.22 4.07-2.22 4.36 0 5.17 2.87 5.17 6.6V23h-4.3v-7.6c0-1.82-.03-4.15-2.53-4.15-2.53 0-2.92 1.98-2.92 4.02V23H7.5V8Z"/>
+          </svg>
+        </a>
+
+        <a class="contact-btn" href="https://1drv.ms/f/c/7ef781e0efac92b1/IgBc0EvO0aqvQ7OcFOO4DLPkAUGUEhh5sE9C1dQ7EuY2B_0?e=jNYnNy" target="_blank" aria-label="Resume PDF">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8.5 12h7v1.5h-7V12Zm0 3h7v1.5h-7V15Zm0 3h5v1.5h-5V18Z"/>
+          </svg>
+        </a>
+
+        <a class="contact-btn" href="mailto:rkandathil@gmail.com" aria-label="Email Rue Kandathil">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4.2-8 5.2-8-5.2V6l8 5.2L20 6v2.2Z"/>
+          </svg>
+        </a>
+
+        <button class="contact-btn" type="button" aria-label="Phone number">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.6.6 4 .6.7 0 1.2.5 1.2 1.2v3.5c0 .7-.5 1.2-1.2 1.2C10.3 21.4 2.6 13.7 2.6 3.4c0-.7.5-1.2 1.2-1.2h3.5c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.7.6 4 .1.4 0 .9-.3 1.2l-2.2 2.2Z"/>
+          </svg>
+          <span class="phone-tooltip">1-780-901-2501</span>
+        </button>
+      </div>
+
+      
+    
+    </aside>
+
+    <main class="right-panel">
+      <section id="about" class="content-section active">
+        <h2 class="section-header"><span class="num">01.</span> About</h2>
+
+        <div class="body-copy">
+          <p>
+            I’m an analytics and business intelligence leader focused on turning complex data environments into clear, governed, and decision-ready reporting experiences.
+          </p>
+
+          <p>
+            My work spans <strong>Power BI, Microsoft Fabric, SQL, semantic modeling, data governance, dashboard design, and analytics modernization</strong>. I’m especially interested in projects where technical delivery and business change need to work together.
+          </p>
+
+          <p>
+            This portfolio is designed as a recruiter-friendly snapshot of my project work, leadership experience, and practical analytics delivery approach.
+          </p>
         </div>
-    </nav>
+      </section>
 
-    <header class="max-w-5xl mx-auto px-6 py-24 text-center">
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Rue Kandathil [cite: 1]</h1>
-        <p class="text-2xl md:text-3xl font-semibold gradient-text mb-8">Managing Principal, Data & Analytics [cite: 1]</p>
-        <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
-            Seasoned IT leader focusing on people, strategy, and outcomes—backed by deep technical expertise in analytics[cite: 5, 13].
-        </p>
-        <div class="flex justify-center gap-4">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 w-40">
-                <p class="text-3xl font-bold text-blue-600">$3.5M+</p>
-                <p class="text-xs text-slate-500 uppercase tracking-widest mt-2">Signed Contracts [cite: 9, 34]</p>
+      
+      <section id="experience" class="content-section">
+        <h2 class="section-header"><span class="num">02.</span> Experience</h2>
+
+        <div class="timeline-list">
+
+          <article class="timeline-item pellera-clean managing-principal">
+            <div class="timeline-date">OCT 2021 — PRESENT</div>
+
+            <div class="timeline-content">
+              <h3>Managing Principal, Data &amp; Analytics</h3>
+
+              <p>
+                Function as a Principal to lead the design and implementation of analytics architectures used to power data engineering, business intelligence, data science, and AI initiatives.
+              </p>
+
+              <p>
+                Design and implement scalable, cost-effective, governed, and secure hybrid architectures in Fabric, Snowflake, and Databricks based on client requirements and capacity.
+              </p>
+
+              <p>
+                Lead pre-sales support including scoping, estimating, cost analysis, proposal creation, SOW development, and resource planning for potential projects—helped win $3.5M+ in signed contracts.
+              </p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 w-40">
-                <p class="text-3xl font-bold text-purple-600">15%</p>
-                <p class="text-xs text-slate-500 uppercase tracking-widest mt-2">Efficiency Gain [cite: 42]</p>
+          </article>
+
+          <article class="timeline-item pellera-clean">
+            <div class="timeline-date"></div>
+
+            <div class="timeline-content">
+              <h3>Manager, Business Analytics</h3>
+
+              <p>
+                Led and developed on projects totaling $700k+ in signed value over the past 4 years as a project manager or solution architect through successful completion.
+              </p>
+
+              <p>
+                Increased project turnover rate by 10–15% through improved technical competencies, reduced inefficiencies, and implementation of project development standard operating procedures.
+              </p>
+
+              <p>
+                Led, mentored, and trained a team of analysts to ensure the timely and quality delivery of analytics projects that consistently exceeded client expectations.
+              </p>
             </div>
+          </article>
+
+          <article class="timeline-item pellera-clean pellera-final">
+            <div class="timeline-date"></div>
+
+            <div class="timeline-content">
+              <h3>Analytics Lead</h3>
+
+              <p>
+                Led, developed, reduced attrition, and mentored a large team of high-performing analysts who delivered successful analytics projects across public and private sectors.
+              </p>
+
+              <p>
+                Designed and assisted in the implementation of complex analytics solution architectures.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">
+              JUN 2018 — SEP 2021
+            </div>
+
+            <div class="timeline-content">
+              <h3 class="finning-bi">Business Intelligence Analyst · Finning International</h3>
+
+              <p>
+                Crafted trustworthy analytics for senior leadership to enable data-driven decision making.
+              </p>
+
+              <p>
+                Implemented prescriptive and predictive analytics reporting solutions using complex datasets and acted as a BI SME for business and technical teams.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item no-top-date no-border business-analyst-role">
+            <div class="timeline-date"></div>
+
+            <div class="timeline-content">
+              <h3>Business Analyst · Finning International</h3>
+
+              <p>
+                Developed end-to-end business cases enabling timely decision making related to sales, operations growth, and operational capability objectives.
+              </p>
+
+              <p>
+                Helped develop a new reporting ecosystem for Finning’s Canadian Sales &amp; Operations division.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">
+              MAY 2017 — MAY 2018
+            </div>
+
+            <div class="timeline-content">
+              <h3 class="sales-analyst">Sales Analyst · Federated Co‑Operatives Limited</h3>
+
+              <p>
+                Translated complex business requests into clear technical requirements and conducted analyses to track the impact of promotional programs.
+              </p>
+
+              <p>
+                Mined, cleansed, and reported on data for recurring and ad-hoc analyses.
+              </p>
+            </div>
+          </article>
+
         </div>
-    </header>
+      </section>
 
-    <section id="about" class="bg-white py-20">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
-                <i class="fa-solid fa-chess-knight text-blue-600"></i> Strategy & Vision
-            </h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <p class="text-slate-700 leading-relaxed mb-6">
-                        I lead teams to deliver complex analytics projects while helping organizations create robust data systems[cite: 6]. My work centers on building practical roadmaps for integrations and modernizing how organizations use data[cite: 7, 8].
-                    </p>
-                    <p class="text-slate-700 leading-relaxed">
-                        I balance delivery pressure with a sustainable pace, translating executive goals into plans teams can actually execute.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
-                        <i class="fa-solid fa-check-circle text-green-500 mt-1"></i>
-                        <p class="text-sm"><strong>Thought Leadership:</strong> Planning migrations and optimizations[cite: 21].</p>
-                    </div>
-                    <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
-                        <i class="fa-solid fa-check-circle text-green-500 mt-1"></i>
-                        <p class="text-sm"><strong>Governance:</strong> Enhancing data quality and security frameworks[cite: 21].</p>
-                    </div>
-                    <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
-                        <i class="fa-solid fa-check-circle text-green-500 mt-1"></i>
-                        <p class="text-sm"><strong>Modernization:</strong> Designing high-ROI, scalable architectures[cite: 21].</p>
-                    </div>
-                </div>
+
+
+      
+      <section id="skills" class="content-section">
+        <h2 class="section-header"><span class="num">03.</span> Skills</h2>
+
+        <div class="skills-list">
+          <article class="skills-item">
+            <h3>Technical</h3>
+            <p>
+              Platforms, tools, and development skills used to design, build, and support modern analytics solutions.
+            </p>
+            <div class="chips">
+              <span class="chip">Microsoft Fabric</span>
+              <span class="chip">Power BI</span>
+              <span class="chip">SQL</span>
+              <span class="chip">DAX</span>
+              <span class="chip">Python</span>
+              <span class="chip">Snowflake</span>
+              <span class="chip">Databricks</span>
+              <span class="chip">Data Modeling</span>
+              <span class="chip">Semantic Models</span>
+              <span class="chip">Tableau</span>
             </div>
+          </article>
+
+          <article class="skills-item">
+            <h3>Leadership</h3>
+            <p>
+              Leadership capabilities used to guide analytics teams, client delivery, solution architecture, and executive decision-making.
+            </p>
+            <div class="chips">
+              <span class="chip">Solution Architecture</span>
+              <span class="chip">Project Delivery</span>
+              <span class="chip">Pre-Sales</span>
+              <span class="chip">SOW Development</span>
+              <span class="chip">Resource Planning</span>
+              <span class="chip">Team Mentorship</span>
+              <span class="chip">Vendor Management</span>
+              <span class="chip">Analytics Strategy</span>
+            </div>
+          </article>
+
+          <article class="skills-item">
+            <h3>Soft</h3>
+            <p>
+              Communication and problem-solving skills used to translate business needs into clear analytics outcomes.
+            </p>
+            <div class="chips">
+              <span class="chip">Stakeholder Management</span>
+              <span class="chip">Executive Communication</span>
+              <span class="chip">Facilitation</span>
+              <span class="chip">Business Translation</span>
+              <span class="chip">Problem Solving</span>
+              <span class="chip">Strategic Thinking</span>
+              <span class="chip">Client Advisory</span>
+            </div>
+          </article>
         </div>
-    </section>
+      </section>
 
-    <section id="experience" class="py-20">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12">Professional Experience</h2>
-            <div class="space-y-12">
-                <div class="relative pl-8 border-l-2 border-blue-200">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
-                    <p class="text-sm font-bold text-blue-600 uppercase mb-1">Apr 2025 – Present [cite: 30]</p>
-                    <h3 class="text-xl font-bold">Managing Principal, Data & Analytics </h3>
-                    <p class="text-slate-600 mb-4">Pellera Technologies </p>
-                    <ul class="text-slate-700 space-y-2 list-disc pl-5">
-                        <li>Lead design and implementation of architectures for BI and AI initiatives[cite: 31].</li>
-                        <li>Implement hybrid architectures in Fabric, Snowflake, and Databricks[cite: 32].</li>
-                        <li>Direct pre-sales support, helping win $3.5M+ in signed contracts[cite: 34].</li>
-                    </ul>
-                </div>
-                <div class="relative pl-8 border-l-2 border-slate-200">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-slate-300 rounded-full"></div>
-                    <p class="text-sm font-bold text-slate-500 uppercase mb-1">Oct 2021 – Present [cite: 37, 48]</p>
-                    <h3 class="text-xl font-bold">Manager, Business Analytics & Analytics Lead [cite: 36, 47]</h3>
-                    <p class="text-slate-600 mb-4">Converge Technology Solutions [cite: 36]</p>
-                    <ul class="text-slate-700 space-y-2 list-disc pl-5">
-                        <li>Led projects exceeding $700k in signed value[cite: 38].</li>
-                        <li>Increased project turnover rate by 10-15% via standard SOPs[cite: 42].</li>
-                        <li>Managed vendor relations with Microsoft, Salesforce, and Alteryx[cite: 46].</li>
-                    </ul>
-                </div>
-            </div>
+
+      <section id="projects" class="content-section">
+        <h2 class="section-header"><span class="num">04.</span> Projects</h2>
+
+        <div class="item-list">
+          <article class="project-item">
+            <h3>Microsoft Fabric Medallion Architecture</h3>
+            <p>
+              A Fabric-based architecture using bronze, silver, and gold layers to organize raw ingestion, transformation, business rules, and reporting-ready datasets.
+            </p>
+          </article>
+
+          <article class="project-item">
+            <h3>Executive KPI Dashboard</h3>
+            <p>
+              A Power BI reporting experience focused on KPI definitions, trend analysis, drill-through design, and executive-level decision support.
+            </p>
+          </article>
+
+          <article class="project-item">
+            <h3>Analytics Modernization Roadmap</h3>
+            <p>
+              A current-state to future-state roadmap showing how organizations can move from legacy BI and on-prem reporting into modern cloud analytics.
+            </p>
+          </article>
+
+          <article class="project-item">
+            <h3>Data Validation Workflow</h3>
+            <p>
+              A standardized analytics validation workflow for confirming report accuracy, reconciling data outputs, documenting exceptions, and improving trust in business reporting.
+            </p>
+          </article>
         </div>
-    </section>
+      </section>
+    </main>
+  </div>
 
-    <section id="projects" class="bg-slate-100 py-20">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center">Project Spotlight</h2>
-            <div class="relative">
-                <div class="carousel-item active glass-morphism rounded-3xl shadow-xl overflow-hidden bg-white">
-                    <div class="grid md:grid-cols-2">
-                        <div class="p-8 md:p-12 bg-blue-600 text-white flex flex-col justify-center">
-                            <span class="text-blue-200 font-bold uppercase tracking-widest text-xs mb-2">Modernization</span>
-                            <h2 class="text-2xl font-bold mb-2">Region of York </h2>
-                            <p class="text-blue-100 italic">Sep 2023 – Current </p>
-                            <p class="mt-6 text-2xl font-bold">~$2M Project </p>
-                        </div>
-                        <div class="p-8 md:p-12">
-                            <h3 class="font-bold text-blue-600 mb-4">Overview</h3>
-                            <p class="text-sm text-slate-700 mb-4">Implementing Azure and Power BI for data management and machine learning[cite: 70].</p>
-                            <h3 class="font-bold text-blue-600 mb-2">My Role</h3>
-                            <p class="text-sm text-slate-700">Leading modernization efforts, building future-state roadmaps, and creating governance processes[cite: 71, 72].</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item glass-morphism rounded-3xl shadow-xl overflow-hidden bg-white">
-                    <div class="grid md:grid-cols-2">
-                        <div class="p-8 md:p-12 bg-indigo-700 text-white flex flex-col justify-center">
-                            <span class="text-indigo-200 font-bold uppercase tracking-widest text-xs mb-2">Architecture</span>
-                            <h2 class="text-2xl font-bold mb-2">HIROC </h2>
-                            <p class="text-indigo-100 italic">Mar 2022 – Oct 2022 </p>
-                        </div>
-                        <div class="p-8 md:p-12">
-                            <h3 class="font-bold text-indigo-700 mb-4">Challenge</h3>
-                            <p class="text-sm text-slate-700 mb-4">Designed complex embedded analytics with multi-fact aggregated datasets and dynamic security.</p>
-                            <h3 class="font-bold text-indigo-700 mb-2">Stack</h3>
-                            <p class="text-sm text-slate-700">Snowflake, Power BI, Power Automate, Git, and web development[cite: 74].</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item glass-morphism rounded-3xl shadow-xl overflow-hidden bg-white">
-                    <div class="grid md:grid-cols-2">
-                        <div class="p-8 md:p-12 bg-slate-800 text-white flex flex-col justify-center">
-                            <span class="text-slate-400 font-bold uppercase tracking-widest text-xs mb-2">Training</span>
-                            <h2 class="text-2xl font-bold mb-2">Converge AA Practice [cite: 77]</h2>
-                            <p class="text-slate-300 italic">Dec 2021 – Apr 2022 [cite: 77]</p>
-                        </div>
-                        <div class="p-8 md:p-12">
-                            <h3 class="font-bold text-slate-800 mb-4">Enablement</h3>
-                            <p class="text-sm text-slate-700 mb-4">Developed internal training for Power BI and Microsoft Fabric to grow team competency[cite: 77].</p>
-                            <h3 class="font-bold text-slate-800 mb-2">Result</h3>
-                            <p class="text-sm text-slate-700">Significantly improved team delivery on related projects, driving correlated revenue[cite: 79].</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center mt-8 gap-4">
-                    <button onclick="moveSlide(-1)" class="p-3 rounded-full bg-white border hover:bg-slate-50 shadow-sm"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button onclick="moveSlide(1)" class="p-3 rounded-full bg-white border hover:bg-slate-50 shadow-sm"><i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+    const buttons = document.querySelectorAll(".nav button");
+    const sections = document.querySelectorAll(".content-section");
+    const rightPanel = document.querySelector(".right-panel");
 
-    <section id="skills" class="bg-slate-900 text-white py-20">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12">Technical Arsenal [cite: 21, 35]</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Platforms</h4>
-                    <ul class="space-y-2 text-slate-300">
-                        <li>Microsoft Fabric </li>
-                        <li>Snowflake [cite: 32]</li>
-                        <li>Databricks [cite: 32]</li>
-                        <li>Azure </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Analytics</h4>
-                    <ul class="space-y-2 text-slate-300">
-                        <li>Power BI [cite: 26]</li>
-                        <li>Tableau [cite: 35]</li>
-                        <li>Alteryx [cite: 46]</li>
-                        <li>Salesforce [cite: 46]</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Languages</h4>
-                    <ul class="space-y-2 text-slate-300">
-                        <li>SQL [cite: 35]</li>
-                        <li>Python [cite: 35]</li>
-                        <li>DAX & M [cite: 35]</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Education</h4>
-                    <ul class="space-y-2 text-slate-300 text-sm">
-                        <li>B.A. Economics [cite: 23]</li>
-                        <li>Agile Leadership [cite: 23]</li>
-                        <li>Certified BI Analyst [cite: 26]</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    const scrollUpBtn = document.getElementById("scrollUpBtn");
+    const scrollDownBtn = document.getElementById("scrollDownBtn");
 
-    <footer class="py-12 border-t">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-                <h3 class="font-bold">Rue Kandathil [cite: 19]</h3>
-                <p class="text-slate-500 text-sm">Calgary, AB | (780) 901-2501 [cite: 25]</p>
-                <p class="text-slate-500 text-xs mt-1">rkandathil@gmail.com [cite: 24]</p>
-            </div>
-            <div class="flex gap-6">
-                <a href="https://www.linkedin.com/in/rue-k-880b40139/" target="_blank" class="text-slate-600 hover:text-blue-600"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
-            </div>
-        </div>
-        <p class="text-center text-slate-400 text-xs mt-8">References and Portfolio available upon request [cite: 67, 68]</p>
-    </footer>
+    function updateScrollIndicators() {
+      const scrollTop = rightPanel.scrollTop;
+      const maxScroll = rightPanel.scrollHeight - rightPanel.clientHeight;
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-item');
-        function moveSlide(step) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + step + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-    </script>
+      if (scrollTop > 8) {
+        scrollUpBtn.classList.add("visible");
+      } else {
+        scrollUpBtn.classList.remove("visible");
+      }
+
+      if (scrollTop < maxScroll - 8) {
+        scrollDownBtn.classList.add("visible");
+      } else {
+        scrollDownBtn.classList.remove("visible");
+      }
+    }
+
+    scrollUpBtn.addEventListener("click", () => {
+      rightPanel.scrollBy({
+        top: -300,
+        behavior: "smooth"
+      });
+    });
+
+    scrollDownBtn.addEventListener("click", () => {
+      rightPanel.scrollBy({
+        top: 300,
+        behavior: "smooth"
+      });
+    });
+
+    rightPanel.addEventListener("scroll", updateScrollIndicators);
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.section;
+
+        buttons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        sections.forEach(section => {
+          section.classList.toggle("active", section.id === target);
+        });
+
+        rightPanel.scrollTop = 0;
+
+        setTimeout(updateScrollIndicators, 50);
+      });
+    });
+
+    window.addEventListener("load", updateScrollIndicators);
+  </script>
 </body>
 </html>
