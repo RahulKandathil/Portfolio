@@ -131,45 +131,6 @@ How should I edit this code to simply remove the numbers beside the section head
 
 <h2 class="section-header"><span class="num">01.</span> About</h2>
 
-Replace this:
-
-<h2 class="section-header"><span class="num">01.</span> About</h2>
-
-with this:
-
-<h2 class="section-header">About</h2>
-
-Then update the CSS for .section-header.
-
-Find:
-
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-Change it to:
-
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 0;
-
-You can also remove this entire CSS block since it is no longer needed:
-
-.section-header .num {
-    color: var(--accent);
-    font-family: Consolas, "Courier New", monospace;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-}
-
-
-This is just a note to myself: Update my project section with info from the attached file.
-
-Understood. Use the attached file as the source content for updating the Projects section of the portfolio HTML.
-
 Make the following changes:
 - Change the h2 section-header to "Projects (Sample list)"
 - I would like the content below to be put into the 'Projects' section, overwriting the old content
@@ -203,6 +164,29 @@ Industry, country, sector, scale:  Family Healthcare, US, Non-profit, Mid-sized 
 Project: Power BI Proof of Concept and User Training
 Project Summary: Set up a new Power BI tenant as the client’s new reporting platform. This included set up and (detailed) configuration of the Power BI tenant’s settings, conducting licensing and data maturity assessments, creating new content management and lifecycle development processes and, finally, providing mentorship for developers, citizen developers, and consumers.
 Technologies used: Power BI (Desktop, Service, Report server)
+
+
+Make the following changes to the html file:
+- Remove the pills under each sub-section in the Skills section
+- Update the content within each sub-section to be more robust and explanatory. Use the content below to help you. Note: the 	--> shows how the bullet point Experience item (on the left) is related to the Soft/Technical skill item (on the right).
+
+Content:
+• Leading high performing cross-functional data/analytics teams	--> People and team leadership
+•  robust BI/Analytics initiatives to support decision-making	--> BI/Analytics leadership
+• Building and owning technical solutions for BI/Analytics projects	--> Technical solution ownership
+• Designing scalable, AI-driven BI/Analytics and engineering solutions	--> AI-enabled innovation
+• Enabling partnerships across business and data stakeholder groups	--> Building delivery partners
+• 5+ years of experience managing data and analytics teams	--> Thought leadership
+• In-depth knowledge of modern data strategies and architectures 	--> Strategic thinking
+• Skilled at translating requirements into actionable solutions	--> Cross-functional leadership
+• Skilled at breaking down complex topics for non-technical users	-->  Effective communication
+• Deep expertise in Microsoft Power BI, Fabric, Power Platform	--> Creative solutioning
+
+
+Make the following change to the html file:
+- Remove the 01. and 02. numbers from the right-side title headers (About, Experience)
+(eg. Remove the <span class="num">01.</span> part from each right-side header)
+- Ignore the screenshot attached
 
 <!DOCTYPE html>
 <html lang="en">
@@ -870,6 +854,40 @@ Technologies used: Power BI (Desktop, Service, Report server)
       max-width: 760px;
     }
 
+  
+    .skills-list {
+      display: grid;
+      gap: 34px;
+      max-width: 760px;
+    }
+
+    .skills-item {
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .skills-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .skills-item h3 {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .skills-item p {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 16px;
+      max-width: 760px;
+    }
+
   </style>
 </head>
 
@@ -942,7 +960,7 @@ Technologies used: Power BI (Desktop, Service, Report server)
 
     <main class="right-panel">
       <section id="about" class="content-section active">
-        <h2 class="section-header"><span class="num">01.</span> About</h2>
+        <h2 class="section-header">About</h2>
 
         <div class="body-copy">
           <p>
@@ -961,7 +979,7 @@ Technologies used: Power BI (Desktop, Service, Report server)
 
       
       <section id="experience" class="content-section">
-        <h2 class="section-header"><span class="num">02.</span> Experience</h2>
+        <h2 class="section-header">Experience</h2>
 
         <div class="timeline-list">
 
@@ -1079,63 +1097,43 @@ Technologies used: Power BI (Desktop, Service, Report server)
 
 
       
+      
       <section id="skills" class="content-section">
-        <h2 class="section-header"><span class="num">03.</span> Skills</h2>
+        <h2 class="section-header">Skills</h2>
 
         <div class="skills-list">
           <article class="skills-item">
             <h3>Technical</h3>
             <p>
-              Platforms, tools, and development skills used to design, build, and support modern analytics solutions.
+              I bring hands-on ownership of BI and analytics solutions, from translating business needs into actionable designs to building scalable reporting, data engineering, and platform architectures. My technical work is grounded in modern data strategies, Microsoft Power BI, Microsoft Fabric, Power Platform, SQL, semantic modeling, and analytics solution design.
             </p>
-            <div class="chips">
-              <span class="chip">Microsoft Fabric</span>
-              <span class="chip">Power BI</span>
-              <span class="chip">SQL</span>
-              <span class="chip">DAX</span>
-              <span class="chip">Python</span>
-              <span class="chip">Snowflake</span>
-              <span class="chip">Databricks</span>
-              <span class="chip">Data Modeling</span>
-              <span class="chip">Semantic Models</span>
-              <span class="chip">Tableau</span>
-            </div>
+            <p>
+              I focus on building solutions that are secure, governed, scalable, and useful to business users. This includes designing technical approaches for BI and analytics projects, enabling AI-driven innovation where appropriate, and making sure technical architecture supports practical decision-making.
+            </p>
           </article>
 
           <article class="skills-item">
             <h3>Leadership</h3>
             <p>
-              Leadership capabilities used to guide analytics teams, client delivery, solution architecture, and executive decision-making.
+              I have 5+ years of experience leading data and analytics teams, including cross-functional groups responsible for delivery, architecture, reporting, and stakeholder enablement. My leadership style focuses on creating delivery partners across business and technical teams so analytics work is aligned to organizational priorities.
             </p>
-            <div class="chips">
-              <span class="chip">Solution Architecture</span>
-              <span class="chip">Project Delivery</span>
-              <span class="chip">Pre-Sales</span>
-              <span class="chip">SOW Development</span>
-              <span class="chip">Resource Planning</span>
-              <span class="chip">Team Mentorship</span>
-              <span class="chip">Vendor Management</span>
-              <span class="chip">Analytics Strategy</span>
-            </div>
+            <p>
+              I lead BI and analytics initiatives that support decision-making, mentor analysts and developers, guide solution direction, and help teams move from unclear requirements to structured, achievable delivery plans. This includes people leadership, team development, thought leadership, and ownership of analytics delivery outcomes.
+            </p>
           </article>
 
           <article class="skills-item">
             <h3>Soft</h3>
             <p>
-              Communication and problem-solving skills used to translate business needs into clear analytics outcomes.
+              I am skilled at translating complex requirements into clear, actionable solutions and breaking down technical topics for non-technical users. This helps executives, business stakeholders, analysts, and technical teams align around shared priorities, delivery risks, and expected outcomes.
             </p>
-            <div class="chips">
-              <span class="chip">Stakeholder Management</span>
-              <span class="chip">Executive Communication</span>
-              <span class="chip">Facilitation</span>
-              <span class="chip">Business Translation</span>
-              <span class="chip">Problem Solving</span>
-              <span class="chip">Strategic Thinking</span>
-              <span class="chip">Client Advisory</span>
-            </div>
+            <p>
+              My soft-skill strengths include effective communication, strategic thinking, cross-functional leadership, creative solutioning, facilitation, and the ability to connect business goals with the right analytics approach.
+            </p>
           </article>
         </div>
       </section>
+
 
 
       
